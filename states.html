@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Homework 5 - Part 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6e6ff; /* Lavender background */
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+            color: #0074D9; /* Blue link color */
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px #0074D9; /* Blue box shadow */
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #b3b3cc; /* Light lavender border */
+            border-radius: 4px;
+        }
+        button {
+            background-color: #0074D9; /* Blue button background */
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        #outputArea {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #b3b3cc; /* Light lavender output area */
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Part 3: State Information</h1>
+    
+    <form id="stateInfoForm">
+        <label for="stateInput">Enter State Full Name or Abbreviation:</label>
+        <input type="text" id="stateInput" name="stateInput" required>
+        <button type="button" id="getStateInfoBtn">Get State Info</button>
+        <button type="button" id="clearFormBtn">Clear Form</button>
+    </form>
+
+    <div id="outputArea"></div>
+    
+    <p><a href="main_homework5.html">Go back to the main Homework 5 page</a></p>
+
+    <script>
+        const stateData = [
+            ["AL", "Alabama", "Montgomery", "4,903,185"],
+            ["AK", "Alaska", "Juneau", "731,545"],
+            ["AZ", "Arizona", "Phoenix", "7,278,717"],
+            ["AR", "Arkansas", "Little Rock", "3,017,825"],
+            ["CA", "California", "Sacramento", "39,512,223"],
+            ["CO", "Colorado", "Denver", "5,758,736"],
+            ["FL", "Florida", "Tallahassee", "21,538,187"],
+            ["GA", "Georgia", "Atlanta", "10,711,908"],
+            ["HI", "Hawaii", "Honolulu", "1,415,872"],
+            ["IL", "Illinois", "Springfield", "12,812,508"],
+            ["NY", "New York", "Albany", "19,453,561"],
+            ["TX", "Texas", "Austin", "29,145,505"]
+        ];
+
+        document.getElementById('getStateInfoBtn').addEventListener('click', function () {
+            const stateInput = document.getElementById('stateInput').value.trim().toUpperCase();
+            const outputArea = document.getElementById('outputArea');
+
+            let stateInfo = null;
+            for (const state of stateData) {
+                if (state[0] === stateInput || state[1].toUpperCase() === stateInput) {
+                    stateInfo = state;
+                    break;
+                }
+            }
+
+            if (stateInfo) {
+                const [abbr, name, capital, population] = stateInfo;
+                outputArea.innerHTML = `
+                    Thanks for your inquiry, here is the information you requested:
+                    State Abbr = ${abbr}
+                    State Name = ${name}
+                    Capital = ${capital}
+                    Population = ${population}`;
+            } else {
+                outputArea.innerHTML = "Sorry, we do not have information about this state! We only have information about the listed states.";
+            }
+        });
+
+        document.getElementById('clearFormBtn').addEventListener('click', function () {
+            document.getElementById('stateInfoForm').reset();
+            document.getElementById('outputArea').innerHTML = "";
+        });
+    </script>
+</body>
+</html>
