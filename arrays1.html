@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Homework 5 - Part 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6e6ff; /* Lavender background */
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+            color: #0074D9; /* Blue link color */
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px #0074D9; /* Blue box shadow */
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #b3b3cc; /* Light lavender border */
+            border-radius: 4px;
+        }
+        input[type="radio"], input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        button {
+            background-color: #0074D9; /* Blue button background */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        #outputArea {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #b3b3cc; /* Light lavender output area */
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Part 1: Data Submission Form</h1>
+    
+    <form id="dataForm">
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" required>
+
+        <fieldset>
+            <legend>Age Group:</legend>
+            <input type="radio" id="ageGroup1" name="ageGroup" value="lessThan21" required>
+            <label for="ageGroup1">Less than 21</label>
+            <input type="radio" id="ageGroup2" name="ageGroup" value="21to50" required>
+            <label for="ageGroup2">21 to 50</label>
+            <input type="radio" id="ageGroup3" name="ageGroup" value="olderThan50" required>
+            <label for="ageGroup3">Older than 50</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Browsers Used:</legend>
+            <input type="checkbox" id="firefox" name="browsers" value="Firefox">
+            <label for="firefox">Firefox</label>
+            <input type="checkbox" id="edge" name="browsers" value="Edge">
+            <label for="edge">Edge</label>
+            <input type="checkbox" id="chrome" name="browsers" value="Chrome">
+            <label for="chrome">Chrome</label>
+            <input type="checkbox" id="safari" name="browsers" value="Safari">
+            <label for="safari">Safari</label>
+        </fieldset>
+
+        <label for="movieType">Preferred Movie Type:</label>
+        <select id="movieType" name="movieType" required>
+            <option value="" disabled selected>Select a movie type</option>
+            <option value="Action">Action</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Drama">Drama</option>
+            <option value="Documentary">Documentary</option>
+            <option value="ScienceFiction">Science Fiction</option>
+        </select>
+
+        <button type="button" id="submitBtn">Submit</button>
+        <button type="button" id="clearBtn">Clear</button>
+    </form>
+
+    <div id="outputArea"></div>
+    
+    <p><a href="main_homework5.html">Go back to the main Homework 5 page</a></p>
+
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', function () {
+            var fullName = document.getElementById('fullName').value;
+            var ageGroup = document.querySelector('input[name="ageGroup"]:checked');
+            var browsers = document.querySelectorAll('input[name="browsers"]:checked');
+            var movieType = document.getElementById('movieType').value;
+            var outputArea = document.getElementById('outputArea');
+
+            if (fullName === "" || !ageGroup || browsers.length === 0 || movieType === "") {
+                outputArea.innerHTML = "Error: Please fill out all required fields.";
+            } else {
+                outputArea.innerHTML = "Thanks, your data was submitted!";
+            }
+        });
+
+        document.getElementById('clearBtn').addEventListener('click', function () {
+            document.getElementById('dataForm').reset();
+            document.getElementById('outputArea').innerHTML = "";
+        });
+    </script>
+</body>
+</html>
