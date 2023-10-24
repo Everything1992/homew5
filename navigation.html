@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Homework 5 - Part 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6e6ff; /* Lavender background */
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+            color: #0074D9; /* Blue link color */
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #b3b3cc; /* Light lavender border */
+            border-radius: 4px;
+        }
+        button {
+            background-color: #0074D9; /* Blue button background */
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Part 2: Website Navigation</h1>
+    
+    <p><a href="main_homework5.html">Go back to the main Homework 5 page</a></p>
+
+    <label for="selectMenu1">Select a Website (OnChange Event):</label>
+    <select id="selectMenu1" onchange="openWebsiteNewTab1(this.value)">
+        <option value="" disabled selected>Select a website</option>
+        <option value="https://www.google.com">Google</option>
+        <option value="https://www.microsoft.com">Microsoft</option>
+        <option value="https://www.apple.com">Apple</option>
+    </select>
+    
+    <br><br>
+
+    <label for="selectMenu2">Select a Website (Button Click Event):</label>
+    <select id="selectMenu2">
+        <option value="" disabled selected>Select a website</option>
+        <option value="https://www.yahoo.com">Yahoo</option>
+        <option value="https://www.facebook.com">Facebook</option>
+        <option value="https://www.amazon.com">Amazon</option>
+    </select>
+    <button onclick="openWebsiteNewTab2()">Go to Website</button>
+
+    <script>
+        function openWebsiteNewTab1(url) {
+            if (url) {
+                window.open(url, '_blank');
+            }
+        }
+
+        function openWebsiteNewTab2() {
+            var selectMenu2 = document.getElementById('selectMenu2');
+            var selectedValue = selectMenu2.value;
+            if (selectedValue) {
+                window.open(selectedValue, '_blank');
+            }
+        }
+    </script>
+</body>
+</html>
